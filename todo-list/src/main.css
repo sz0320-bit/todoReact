@@ -1,0 +1,165 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background-color: #1f1f1f;
+}
+.logoHead{
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    height: 8rem;
+}
+.logoHead a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+}
+.logoHead h1{
+    padding: 0.3rem;
+    border: solid white 4px;
+
+}
+.logoHead span{
+    color: indianred;
+
+}
+.glass{
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(25x);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    height: 50em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bigcontainer{
+    height: 40em;
+    width: 100em;
+    border: #1f1f1f 8px solid;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.textenter{
+    color: white;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    display: flex;
+
+}
+.textenter #mainentry {
+    background: rgba(255, 255, 255, 0.23);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.4px);
+    -webkit-backdrop-filter: blur(4.4px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    width: 75%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 1.5rem;
+}
+#mainsubmit{
+    width: 7.5%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    color: #1f1f1f;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    border: #1f1f1f 4px solid;
+}
+#mainsubmit:hover {
+    background-color: #1f1f1f; /* Green */
+    color: white;
+    border: 4px solid white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.displaybox{
+    height: 32rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: auto;
+}
+.unline{
+    font-size: 2rem;
+    color: white;
+    width: 70%;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+.unline .textbox{
+    font-size: 2rem;
+    width: 100%;
+    background-color: #1f1f1f;
+    color: white;
+}
+.buttonholder{
+    display: inline-flex;
+    width: 28%;
+    height: 2.26rem;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.deletebutton{
+    width: 40%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    color: #1f1f1f;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: #1f1f1f 4px solid;
+}
+.deletebutton:hover {
+    background-color: #1f1f1f; /* Green */
+    color: white;
+    border: 4px solid white;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.editbutton{
+    width: 40%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    color: #1f1f1f;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: #1f1f1f 4px solid;
+}
+.editbutton:hover {
+    background-color: #1f1f1f; /* Green */
+    color: white;
+    border: 4px solid white;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.textholder{
+    font-size: 2rem;
+    color: white;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f1f1f;
+    border-radius: 16px;
+    border: 4px solid white;
+}
+#entrypoint{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1em;
+}
