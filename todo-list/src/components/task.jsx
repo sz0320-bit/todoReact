@@ -7,7 +7,7 @@ const Task = ({task}) => {
             </div>
             <div className="buttonholder" >
                 <input type="button" value="edit" className="editbutton" />
-                <input type="button" value="delete" className="deletebutton"  />
+                <input type="button" value="delete" className="deletebutton"/>
             </div>
         </div>
     )
