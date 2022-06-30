@@ -1,4 +1,6 @@
 import {Task} from "./task";
+const tasks = ['task1', 'task2', 'task3'];
+
 
 
 const Tasks = () => {
@@ -7,7 +9,11 @@ const Tasks = () => {
 
     return (
         <div id="entrypoint">
-            <Task></Task>
+            {
+                tasks.map((task,index) => (
+                    <Task key={index} task={task}></Task>
+                ))
+            }
         </div>
     )
  }

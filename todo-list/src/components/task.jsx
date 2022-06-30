@@ -1,9 +1,9 @@
 
-const Task = () => {
+const Task = ({task}) => {
     return (
         <div className="textholder">
             <div className="unline" id="line" >
-                <input type="text" className="textbox" readOnly value="hello"/>
+                <input type="text" className="textbox" readOnly value={task}/>
             </div>
             <div className="buttonholder" >
                 <input type="button" value="edit" className="editbutton" />
