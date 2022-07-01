@@ -8,10 +8,7 @@ const BodyBox = () => {
     return (
         <div className="glass">
             <div className="bigcontainer">
-
-
                     <Tasks></Tasks>
-
             </div>
         </div>
     )
