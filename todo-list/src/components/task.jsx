@@ -1,8 +1,8 @@
 import {useRef, useEffect, useState} from 'react';
 
-const Task = ({task,onDelete,index,onEdit}) => {
+const Task = ({task,onDelete,onEdit}) => {
     const [edit, setEdit] = useState(true);
-    const [text, setText] = useState(task);
+    const [text, setText] = useState(task.text);
     const ref = useRef(null);
     const handleClick = () => {
         ref.current.focus();
@@ -14,13 +14,13 @@ const Task = ({task,onDelete,index,onEdit}) => {
         const element = ref.current;
 
         element.addEventListener('focusout', () => {
-            onEdit(index, ref.current.value);
+            onEdit(task.id, ref.current.value);
             setEdit(true);
         });
 
         return () => {
             element.removeEventListener('focusout', () => {
-                onEdit(index, text);
+                onEdit(task.id, ref.current.value);
                 setEdit(true);
             });
         };
@@ -33,7 +33,7 @@ const Task = ({task,onDelete,index,onEdit}) => {
             </div>
             <div className="buttonholder" >
                 <input type="button" value="edit" className="editbutton" onClick={handleClick}/>
-                <input type="button" value="delete" className="deletebutton" onClick={() => onDelete(index)}/>
+                <input type="button" value="delete" className="deletebutton" onClick={() => onDelete(task.id)}/>
             </div>
         </div>
     )

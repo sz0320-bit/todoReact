@@ -11,29 +11,47 @@ try {
     const [text, setText] = useState('');
     const ref = useRef(null);
     const newTask = (e) => {
-        e.preventDefault();
-        setTasks(task.concat(text));
+        e.preventDefault()
+        setTasks(task.concat(addTask()));
     }
+
+    const addTask = () => {
+
+        return {"text":text,"id":randomKey()};
+    }
+
 
     useEffect(() => {
         {
             tasks = task;
-            localStorage.setItem("items", JSON.stringify(task));
+            localStorage.setItem("items", JSON.stringify(tasks));
             console.log(task)
             console.log(tasks);
             ref.current.value = '';
-            ref.current.blur();
         }
     }, [task]);
 
     const deleteTask = (key) => {
-        setTasks(task.filter((task, index) => index !== key));
+        setTasks(task.filter((task) => task.id !== key));
     }
 
-    const editTask = (key, val) => {
-        console.log(key, val);
-        setTasks(task.map((task, index) => index === key ? val : task));
+    const editTask = (id, text) => {
+        //function that setsstate as a new array with the edited task that matches the id and replaces the text with the new text
+        console.log(id, text);
+        let newTask = [...tasks]
+        for(let i = 0; i < newTask.length; i++) {
+            if(newTask[i].id === id) {
+                newTask[i].text = text;
+            }
+        }
+        setTasks(newTask);
     }
+    //function that returns a completely random hash key
+    const randomKey = () => {
+        const ret =  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        return ret;
+    }
+
     return (
         <>
             <form onSubmit={newTask} className={'textenter'}>
@@ -44,8 +62,8 @@ try {
             <div className="displaybox">
                 <div id={'entrypoint'}>
                     {
-                        task.map((task, index) => (
-                            <Task index={index} key={index} task={task} onEdit={editTask} onDelete={deleteTask}/>
+                        task.map((task) => (
+                            <Task  key={task.id} task={task} onEdit={editTask} onDelete={deleteTask}/>
                         ))}
                 </div>
             </div>
@@ -53,7 +71,7 @@ try {
     )
 }catch (e) {
     console.log(e);
-    localStorage.setItem("items", JSON.stringify([]));
+    localStorage.clear();
 }
  }
 
