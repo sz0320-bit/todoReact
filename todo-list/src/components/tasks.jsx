@@ -54,10 +54,10 @@ try {
 
     return (
         <>
-            <form onSubmit={newTask} className={'flex font-mono'}>
-                <h2>Please Enter Task:</h2>
-                <input type="text" id="mainentry" ref={ref} onChange={(e) => setText(e.target.value)}/>
-                <input type="submit" value="submit" id="mainsubmit"/>
+            <form onSubmit={newTask} className={'flex font-mono shadow-2xl border-2 justify-evenly items-center rounded-xl p-2 border-blue-800'}>
+                <h2 >Please Enter Task:</h2>
+                <input type="text" id="mainentry" className={'font-mono  mr-[1.5em] text-xl border-2 border-blue-800 rounded-xl text-center w-[100%]'} ref={ref} onChange={(e) => setText(e.target.value)}/>
+                <input type="submit" value="submit" className={'border-2 border-blue-800 h-fit px-2 rounded-xl'} id="mainsubmit"/>
             </form>
             <div className="displaybox">
                 <div id={'entrypoint'}>
