@@ -6,8 +6,8 @@ const BodyBox = () => {
 
 
     return (
-        <div className="glass">
-            <div className="bigcontainer">
+        <div className="m-7">
+            <div className="">
                     <Tasks></Tasks>
             </div>
         </div>

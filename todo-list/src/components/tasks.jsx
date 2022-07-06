@@ -54,7 +54,7 @@ try {
 
     return (
         <>
-            <form onSubmit={newTask} className={'textenter'}>
+            <form onSubmit={newTask} className={'flex font-mono'}>
                 <h2>Please Enter Task:</h2>
                 <input type="text" id="mainentry" ref={ref} onChange={(e) => setText(e.target.value)}/>
                 <input type="submit" value="submit" id="mainsubmit"/>

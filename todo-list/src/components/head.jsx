@@ -1,11 +1,13 @@
 
 const MainHead = () => {
     return (
-        <div className="logoHead">
-            <a href="index.html">
-                <h1>To<span>Do</span> List</h1>
+
+        <div className="text-center  border-red-500 bg-white rounded-2xlß  shadow-xl text-5xl font-mono text-blue-600 p-2 px-3 mt-3">
+            <a href="index.html" >
+                <h1>TO<span>DO</span>-LIST</h1>
             </a>
         </div>
+
     )
 }
 
