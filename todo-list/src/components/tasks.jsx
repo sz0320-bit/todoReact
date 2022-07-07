@@ -63,7 +63,7 @@ const [show, setShow] = useState(false);
                 <div id={'entrypoint'}>
                     {
                         task.map((task) => (
-                            <Task  key={task.id} task={task} onEdit={editTask} onDelete={deleteTask}/>
+                            <Task  key={task.id}  task={task} onEdit={editTask} onDelete={deleteTask}/>
                         ))}
                 </div>
             </div>
