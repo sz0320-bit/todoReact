@@ -5,8 +5,7 @@ const Task = ({task,onDelete,onEdit}) => {
     const [text, setText] = useState(task.text);
     const ref = useRef(null);
     const handleClick = () => {
-        ref.current.click().focus();
-
+        ref.current.focus();
         setEdit(false);
     };
     //event listener that listens for focusout event and does a function
