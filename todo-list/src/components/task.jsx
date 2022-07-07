@@ -5,7 +5,7 @@ const Task = ({task,onDelete,onEdit}) => {
     const [text, setText] = useState(task.text);
     const ref = useRef(null);
     const handleClick = () => {
-        ref.current.focus();
+
 
         setEdit(false);
     };
