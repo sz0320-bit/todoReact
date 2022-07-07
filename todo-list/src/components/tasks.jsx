@@ -54,14 +54,11 @@ const [show, setShow] = useState(false);
         setShow(bool);
     }
 
-    if(show){
-        return(
-            <SubmitTask onSubmit={addTask} showState={showState}/>
-        )
-    }
+
 
     return (
         <>
+            {show && <SubmitTask onSubmit={addTask} showState={showState}/>}
             <div className="displaybox ">
                 <div id={'entrypoint'}>
                     {
@@ -70,7 +67,7 @@ const [show, setShow] = useState(false);
                         ))}
                 </div>
             </div>
-            <AddTask onclick={showState}/>
+            {!show && <AddTask onclick={showState}/>}
         </>
     )
 }catch (e) {
