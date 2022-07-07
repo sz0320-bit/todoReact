@@ -10,14 +10,14 @@
 
 }
 body{
-    background-color: whitesmoke;
+    background-color: rgba(0,0,0,0.85);
 }
 
 .glass{
-    background: rgba(230, 230, 230, 0.64);
+    background: rgba(230, 230, 230, 0.10);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.2px);
-    -webkit-backdrop-filter: blur(7.2px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 

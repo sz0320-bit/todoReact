@@ -17,10 +17,10 @@ const Task = ({task,onDelete,onEdit}) => {
     return (
         <>
             { show && <EditWindow onSubmit={editTask} initial={task.text} showState={showState}/>}
-        <div className="h-fit p-3 flex gap-3 flex-col mt-6 bg-white rounded-xl shadow-xl">
+        <div className="h-fit p-3 flex gap-3 flex-col mt-6 primary rounded-xl shadow-xl">
 
             <div className="unline" id="line" >
-                <input  type="text" maxLength={15} className=" w-[100%] text-center h-fit shadow-none bg-transparent overflow-y-auto break-words font-mono text-xl pointer-events-none" readOnly   value={text} onChange={(e) => setText(e.target.value)}/>
+                <input  type="text" maxLength={15} className=" w-[100%] text-center text-white h-fit shadow-none bg-transparent overflow-y-auto break-words font-mono text-xl pointer-events-none" readOnly   value={text} onChange={(e) => setText(e.target.value)}/>
             </div>
             <div className="flex justify-center gap-5" >
                 <input type="button" value="edit" className=" px-7 font-mono py-0.5 bg-blue-600 w-32 text-white border-blue-800 h-fit px-2 rounded-xl shadow-xl" onClick={() => setShow(true)}/>
