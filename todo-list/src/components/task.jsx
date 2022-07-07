@@ -32,8 +32,8 @@ const Task = ({task,onDelete,onEdit}) => {
                 <input ref={ref} type="text" className=" w-[100%] text-center h-fit shadow-none bg-transparent overflow-y-auto break-words font-mono text-xl" readOnly={edit}  value={text} onChange={(e) => setText(e.target.value)}/>
             </div>
             <div className="flex justify-center gap-5" >
-                <input type="button" value="edit" className=" px-7 font-mono text-xl bg-blue-600 w-32 text-white border-blue-800 h-fit px-2 rounded-xl shadow-xl" onClick={handleClick}/>
-                <input type="button" value="delete" className=" px-7 font-mono text-xl bg-blue-600 w-32 text-white  h-fit px-2 rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
+                <input type="button" value="edit" className=" px-7 font-mono py-0.5 bg-blue-600 w-32 text-white border-blue-800 h-fit px-2 rounded-xl shadow-xl" onClick={handleClick}/>
+                <input type="button" value="delete" className=" px-7 font-mono py-0.5 bg-blue-600 w-32 text-white  h-fit px-2 rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
             </div>
         </div>
     )

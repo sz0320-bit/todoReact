@@ -1,5 +1,5 @@
-import {Task} from './task';
-import '../main.css';
+import {Task} from '../task';
+import '../../main.css';
 
 export default {
     title: 'Task',
@@ -7,16 +7,12 @@ export default {
 
 }
 
-const allTasks = () => {
-    return alert('hi');
-}
+
 
 const Template = (args) => <Task style={{}}{...args}/>;
 
 export const primary = Template.bind({});
 primary.args = {
-    task:'hi',
-    onDelete:{allTasks},
-    onEdit:{allTasks}
+    task: {id:'fdfdkfjdf',text:'hello world'},
 }
 
