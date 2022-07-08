@@ -59,7 +59,7 @@ const [show, setShow] = useState(false);
     return (
         <>
             {show && <Window onSubmit={addTask} showState={showState} initial={''} title={"Please Enter Task"}/>}
-            <div className="displaybox ">
+            <div className="displaybox">
                 <div id={'entrypoint'}>
                     {
                         task.map((task) => (

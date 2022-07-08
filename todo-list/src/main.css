@@ -4,18 +4,23 @@
 
 .primary{
     @apply bg-white dark:bg-[#1f1f1f];
+    transition-duration: 200ms;
 }
 .secondary{
     @apply bg-[rgba(0,0,0,0.08)] dark:bg-[rgba(0,0,0,0.85)];
+    transition-duration: 200ms;
 }
 .textColor{
     @apply text-black dark:text-white;
+    transition-duration: 200ms;
 }
 *{
 
 }
 body{
     @apply secondary !important;
+
+    transition-duration: 200ms;
 }
 
 .glass{
