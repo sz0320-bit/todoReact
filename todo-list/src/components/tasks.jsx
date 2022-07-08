@@ -67,6 +67,7 @@ const [show, setShow] = useState(false);
                         ))}
                 </div>
             </div>
+
             {!show && <AddTask onclick={showState}/>}
         </>
     )
