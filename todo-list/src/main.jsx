@@ -7,8 +7,9 @@ import {BodyBox} from './components/bodybox'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <MainHead />
-      <BodyBox />
+
+        <MainHead />
+        <BodyBox />
 
   </React.StrictMode>
 )

@@ -3,14 +3,19 @@
 @tailwind utilities;
 
 .primary{
-    @apply bg-[#1f1f1f];
+    @apply bg-white dark:bg-[#1f1f1f];
 }
-
+.secondary{
+    @apply bg-[rgba(0,0,0,0.08)] dark:bg-[rgba(0,0,0,0.85)];
+}
+.textColor{
+    @apply text-black dark:text-white;
+}
 *{
 
 }
 body{
-    background-color: rgba(0,0,0,0.85);
+    @apply secondary !important;
 }
 
 .glass{
@@ -20,4 +25,6 @@ body{
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
+
+
 

@@ -1,6 +1,6 @@
 import {Task} from "./task";
 import {useEffect, useState, useRef} from "react";
-import SubmitTask from "./SubmitTask";
+import Window from "./window";
 import AddTask from "./AddTask";
 let tasks = JSON.parse(localStorage.getItem('items')) || [];
 
@@ -58,7 +58,7 @@ const [show, setShow] = useState(false);
 
     return (
         <>
-            {show && <SubmitTask onSubmit={addTask} showState={showState}/>}
+            {show && <Window onSubmit={addTask} showState={showState} initial={''} title={"Please Enter Task"}/>}
             <div className="displaybox ">
                 <div id={'entrypoint'}>
                     {
