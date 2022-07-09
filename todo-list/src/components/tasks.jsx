@@ -59,8 +59,8 @@ const [show, setShow] = useState(false);
     return (
         <>
             {show && <Window onSubmit={addTask} showState={showState} initial={''} title={"Please Enter Task"}/>}
-            <div className="displaybox">
-                <div id={'entrypoint'}>
+            <div className="">
+                <div id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3 gap-5'}>
                     {
                         task.map((task) => (
                             <Task  key={task.id}  task={task} onEdit={editTask} onDelete={deleteTask}/>

@@ -1,4 +1,4 @@
-import {useRef, useEffect, useState} from 'react';
+import {useState} from 'react';
 import Window from "./window";
 const Task = ({task,onDelete,onEdit}) => {
 
@@ -19,7 +19,7 @@ const Task = ({task,onDelete,onEdit}) => {
             { show && <Window onSubmit={editTask} initial={task.text} showState={showState} title={"Edit Task"}/>}
         <div className="h-fit p-3 flex gap-3 flex-col mt-6 primary rounded-xl shadow-xl">
 
-            <div className="unline" id="line" >
+            <div  id="line" >
                 <input  type="text" maxLength={15} className=" w-[100%] text-center textColor  h-fit shadow-none bg-transparent overflow-y-auto break-words font-mono text-xl pointer-events-none" readOnly   value={text} onChange={(e) => setText(e.target.value)}/>
             </div>
             <div className="flex justify-center gap-5" >
