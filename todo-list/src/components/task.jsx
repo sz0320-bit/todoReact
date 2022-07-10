@@ -11,6 +11,8 @@ const Task = ({task,onDelete,onEdit}) => {
         setShow(bool);
     }
 
+
+
     const editTask = (text,desc) => {
         onEdit(task.id, text, desc);
         setText(text);
@@ -20,27 +22,22 @@ const Task = ({task,onDelete,onEdit}) => {
     return (
         <>
             { show && <Window onSubmit={editTask} initialTitle={task.text} initialDesc={task.desc} showState={showState} title={"Edit Task"}/>}
-        <div className="h-fit p-5 flex gap-3 flex-col justify-center items-center  primary rounded-xl shadow-xl">
+        <div  className={`h-fit p-5 flex gap-3 flex-col justify-center select-none items-center   primary rounded-xl shadow-xl ${description !=='' ? 'border-b-8 border-b-blue-600 hover:scale-105':''}`} onClick={() => description !==''? setShowMore(!showMore): console.log('no description to show!')} >
 
-            <div  id="line" >
-                <input type={'text'} className=" w-[100%] uppercase  text-center     font-extrabold  textColor flex justify-center  h-fit  primary overflow-y-auto break-words font-mono text-xl pointer-events-none" value={text}  onChange={(e) => setText(e.target.value)}/>
-                {
-                    showMore &&
-                    <span className={" w-[100%] pt-3  textColor flex   h-fit  primary overflow-y-auto break-words font-mono text-s pointer-events-none"}>
-                        {description}
-                    </span>
-                }
+            <div  id="line" className={"select-none"}>
+                <input type={'text'} className=" w-[100%]  text-center  select-none  font-extrabold  textColor flex justify-center  h-fit  primary overflow-y-auto break-words font-mono text-xl pointer-events-none" value={text}  onChange={(e) => setText(e.target.value)}/>
             </div>
+            {
+                showMore &&
+                <div className={" w-[100%] textColor bg-[#616161] select-none  flex p-2  rounded-xl h-fit duration-200 description overflow-y-auto break-words font-mono text-s pointer-events-none"}>
+                    {description}
+                </div>
+            }
 
             <div className="flex justify-center gap-5" >
                 <input type="button" value="edit" className=" px-7 font-mono py-0.5  bg-blue-600 w-32 text-white border-blue-800 h-fit px-2 rounded-xl shadow-xl" onClick={() => setShow(true)}/>
                 <input type="button" value="delete" className=" px-7 font-mono py-0.5 bg-blue-600 w-32 text-white  h-fit px-2 rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
             </div>
-            {
-                description !=='' &&
-                <input type="button" value="delete" className=" px-7 font-mono py-0.5 bg-blue-600 w-32 text-white  h-fit px-2 rounded-xl shadow-xl" onClick={() => setShowMore(!showMore)}/>
-
-            }
         </div>
         </>
     )

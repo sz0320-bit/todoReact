@@ -10,6 +10,14 @@
     @apply bg-[rgba(0,0,0,0.08)] dark:bg-[rgba(0,0,0,0.85)];
     transition-duration: 200ms;
 }
+.description{
+    @apply bg-[rgba(0,0,0,0.05)] dark:bg-[rgba(0,0,0,0.20)];
+    @apply border-2 border-blue-600;
+    transition-duration: 200ms;
+}
+
+
+
 .textColor{
     @apply text-black dark:text-white;
     transition-duration: 200ms;
