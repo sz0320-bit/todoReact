@@ -13,8 +13,8 @@ try {
 
 
 
-    const addTask = (text) => {
-        let ret = {"text":text,"id":randomKey()};
+    const addTask = (text, desc) => {
+        let ret = {"text":text,"desc":desc,"id":randomKey()};
         setTasks(task.concat(ret));
     }
 
@@ -32,13 +32,14 @@ try {
         setTasks(task.filter((task) => task.id !== key));
     }
 
-    const editTask = (id, text) => {
+    const editTask = (id, text, desc) => {
         //function that setsstate as a new array with the edited task that matches the id and replaces the text with the new text
-        console.log(id, text);
+        console.log(id, text, desc);
         let newTask = [...tasks]
         for(let i = 0; i < newTask.length; i++) {
             if(newTask[i].id === id) {
                 newTask[i].text = text;
+                newTask[i].desc = desc;
             }
         }
         setTasks(newTask);
@@ -58,9 +59,9 @@ const [show, setShow] = useState(false);
 
     return (
         <>
-            {show && <Window onSubmit={addTask} showState={showState} initial={''} title={"Please Enter Task"}/>}
+            {show && <Window onSubmit={addTask} showState={showState} initialTitle={''} initialDesc={''} title={"Please Enter Task"} />}
             <div className="">
-                <div id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3 gap-5'}>
+                <div id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3 gap-5 gap-y-10 md:grid lg:gap-8 md:grid-cols-2'}>
                     {
                         task.map((task) => (
                             <Task  key={task.id}  task={task} onEdit={editTask} onDelete={deleteTask}/>
