@@ -74,7 +74,6 @@ const [show, setShow] = useState(false);
     )
 }catch (e) {
     console.log(e);
-    localStorage.clear();
 }
  }
 
