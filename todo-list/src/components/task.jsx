@@ -23,7 +23,7 @@ const Task = ({task,onDelete,onEdit}) => {
     return (
         <>
             { show && <Window onSubmit={editTask} initialTitle={task.text} initialDesc={task.desc} showState={showState} title={"Edit Task"}/>}
-        <div  className={`h-fit p-5 flex gap-3 flex-col justify-center select-none items-center   primary rounded-xl shadow-xl ${description !=='' ? 'border-b-8 border-b-blue-600 md:hover:scale-105 lg:hover:scale-105':''}`} onClick={() => description !==''? setShowMore(!showMore): console.log('no description to show!')} >
+        <div  className={`h-fit p-5 flex gap-3 flex-col justify-center select-none items-center  primary rounded-xl shadow-xl ${description !=='' ? 'border-b-8 border-b-blue-600 md:hover:scale-105 lg:hover:scale-105':''}`} onClick={() => description !==''? setShowMore(!showMore): console.log('no description to show!')} >
 
             <div  id="line" className={"select-none"}>
                 <input type={'text'} className=" w-[100%]  text-center  select-none  font-extrabold  textColor flex justify-center  h-fit  primary overflow-y-auto break-words font-mono text-xl pointer-events-none" value={text}  onChange={(e) => setText(e.target.value)}/>
