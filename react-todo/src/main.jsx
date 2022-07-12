@@ -8,11 +8,11 @@ import Toggle from "./components/ViewMode";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+
     <ThemeProvider>
         <MainHead />
         <BodyBox />
         <Toggle />
   </ThemeProvider>
-  </React.StrictMode>
+
 )
