@@ -2,7 +2,6 @@ import {Task} from "./task";
 import {useEffect, useState, useRef} from "react";
 import Window from "./window";
 import AddTask from "./AddTask";
-import {DragDropContext, Droppable} from "react-beautiful-dnd";
 let tasks = JSON.parse(localStorage.getItem('items')) || [];
 
 
@@ -62,18 +61,14 @@ const [show, setShow] = useState(false);
         <>
             {show && <Window onSubmit={addTask} showState={showState} initialTitle={''} initialDesc={''} title={"Please Enter Task"} />}
             <div className="">
-                <DragDropContext>
-                    <Droppable droppableId={"itemslist"}>
-                        {(provided) => (
-                    <div id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3  gap-5 gap-y-10 md:grid lg:gap-8 md:grid-cols-2'} {...provided.droppableProps} ref={provided.innerRef}>
+
+                    <div id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3  gap-5 gap-y-10 md:grid lg:gap-8 md:grid-cols-2'} >
                         {
                             task.map((task,index) => (
                                 <Task  key={task.id} index={index} task={task} onEdit={editTask} onDelete={deleteTask}/>
                             ))}
                     </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+
             </div>
 
             {!show && <AddTask onclick={showState}/>}
