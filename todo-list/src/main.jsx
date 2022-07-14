@@ -4,6 +4,7 @@ import './main.css'
 import {MainHead} from './components/head'
 import {BodyBox} from './components/bodybox'
 import {ThemeProvider} from "./hooks/darkmode";
+import Footer from "./components/footer";
 import Toggle from "./components/ViewMode";
 
 

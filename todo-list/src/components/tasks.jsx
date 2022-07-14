@@ -2,6 +2,7 @@ import {Task} from "./task";
 import {useEffect, useState, useRef} from "react";
 import Window from "./window";
 import AddTask from "./AddTask";
+import Footer from "./footer";
 let tasks = JSON.parse(localStorage.getItem('items')) || [];
 
 
