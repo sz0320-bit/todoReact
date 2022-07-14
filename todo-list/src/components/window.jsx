@@ -2,7 +2,7 @@
 
     import {useRef, useState} from "react";
 
-    const Window = ({ onSubmit , showState, initialTitle, initialDesc,title}) => {
+    const Window = ({ onSubmit , showState, initialTitle, initialDesc,title, showButtons}) => {
         const [text, setText] = useState(initialTitle);
         const [description, setDescription] = useState(initialDesc);
         const ref = useRef(null);
@@ -17,6 +17,7 @@
 
         const cancelText = () => {
             showState(false);
+            showButtons(true);
         }
 
         return (

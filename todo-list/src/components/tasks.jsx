@@ -2,6 +2,7 @@ import {Task} from "./task";
 import {useEffect, useState, useRef} from "react";
 import Window from "./window";
 import AddTask from "./AddTask";
+import Toggle from "./ViewMode";
 let tasks = JSON.parse(localStorage.getItem('items')) || [];
 
 
@@ -43,6 +44,7 @@ try {
             }
         }
         setTasks(newTask);
+
     }
     //function that returns a completely random hash key
     const randomKey = () => {
@@ -51,25 +53,28 @@ try {
     }
 
 const [show, setShow] = useState(false);
+    const [buttonShow, setButtonShow] = useState(true);
     const showState = (bool) => {
         setShow(bool);
+        setButtonShow(!bool);
     }
 
 
 
     return (
         <>
-            {show && <Window onSubmit={addTask} showState={showState} initialTitle={''} initialDesc={''} title={"Please Enter Task"} />}
+            {show && <Window onSubmit={addTask} showState={showState} initialTitle={''} initialDesc={''} title={"Please Enter Task"} showButtons={setButtonShow} />}
             <div className="">
                 <div id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3  gap-5 gap-y-10 md:grid lg:gap-8 md:grid-cols-2'}>
                     {
                         task.map((task) => (
-                            <Task  key={task.id}  task={task} onEdit={editTask} onDelete={deleteTask}/>
+                            <Task  key={task.id}  task={task} onEdit={editTask} onDelete={deleteTask} editShow={setButtonShow}/>
                         ))}
                 </div>
             </div>
 
-            {!show && <AddTask onclick={showState}/>}
+            {buttonShow && <AddTask onclick={showState}/>}
+            {buttonShow && <Toggle/>}
         </>
     )
 }catch (e) {

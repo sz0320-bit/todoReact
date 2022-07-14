@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import Window from "./window";
-const Task = ({task,onDelete,onEdit}) => {
+const Task = ({task,onDelete,onEdit,editShow}) => {
 
     const [text, setText] = useState(task.text);
     const [description, setDescription] = useState(task.desc);
@@ -11,6 +11,10 @@ const Task = ({task,onDelete,onEdit}) => {
         setShow(bool);
     }
 
+    const editPress = () => {
+        setShow(true);
+        editShow(false);;
+    }
 
 
     const editTask = (text,desc) => {
@@ -18,11 +22,12 @@ const Task = ({task,onDelete,onEdit}) => {
         setText(text);
         setDescription(desc);
         desc==='' ? setShowMore(false) : setShowMore(true);
+        editShow(true);
     }
 
     return (
         <>
-            { show && <Window onSubmit={editTask} initialTitle={task.text} initialDesc={task.desc} showState={showState} title={"Edit Task"}/>}
+            { show && <Window onSubmit={editTask} initialTitle={task.text} initialDesc={task.desc} showState={showState}  title={"Edit Task"} showButtons={editShow}/>}
         <div  className={`h-fit p-5 flex gap-3 flex-col justify-center select-none   primary rounded-xl shadow-xl ${description !=='' ? 'border-b-8 border-b-blue-600 md:hover:scale-105 lg:hover:scale-105':''}`} onClick={() => description !==''? setShowMore(!showMore): console.log('no description to show!')} >
 
             <div  id="line" className={"select-none"}>
@@ -36,7 +41,7 @@ const Task = ({task,onDelete,onEdit}) => {
             }
 
             <div className="flex justify-center gap-5" >
-                <input type="button" value="edit" className=" px-7 font-mono py-0.5  bg-blue-600 w-32 text-white border-blue-800 h-fit px-2 rounded-xl shadow-xl" onClick={() => setShow(true)}/>
+                <input type="button" value="edit" className=" px-7 font-mono py-0.5  bg-blue-600 w-32 text-white border-blue-800 h-fit px-2 rounded-xl shadow-xl" onClick={editPress}/>
                 <input type="button" value="delete" className=" px-7 font-mono py-0.5 bg-blue-600 w-32 text-white  h-fit px-2 rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
             </div>
         </div>
