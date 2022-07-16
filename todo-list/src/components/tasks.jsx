@@ -3,6 +3,7 @@ import {useEffect, useState, useRef} from "react";
 import Window from "./window";
 import AddTask from "./AddTask";
 import Toggle from "./ViewMode";
+import {AnimatePresence,motion, LayoutGroup} from "framer-motion";
 let tasks = JSON.parse(localStorage.getItem('items')) || [];
 
 
@@ -63,15 +64,17 @@ const [show, setShow] = useState(false);
 
     return (
         <>
+            <AnimatePresence>
             {show && <Window onSubmit={addTask} showState={showState} initialTitle={''} initialDesc={''} title={"Please Enter Task"} showButtons={setButtonShow} />}
-            <div className="">
-                <div id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3  gap-5 gap-y-10 md:grid lg:gap-8 md:grid-cols-2'}>
-                    {
+            </AnimatePresence>
+            <motion.div className="">
+                <motion.div transition={{duration:2}} id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3  gap-5 gap-y-10 md:grid lg:gap-8 md:grid-cols-2'}>
+                    <AnimatePresence>{
                         task.map((task) => (
                             <Task  key={task.id}  task={task} onEdit={editTask} onDelete={deleteTask} editShow={setButtonShow}/>
-                        ))}
-                </div>
-            </div>
+                        ))}</AnimatePresence>
+                </motion.div>
+            </motion.div>
 
             {buttonShow && <AddTask onclick={showState}/>}
             {buttonShow && <Toggle/>}

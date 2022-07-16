@@ -6,11 +6,10 @@ const BodyBox = () => {
 
 
     return (
-        <div className="m-7">
-            <div className="">
+
+            <div className=" m-7 ">
                     <Tasks></Tasks>
             </div>
-        </div>
     )
 }
 export {BodyBox};

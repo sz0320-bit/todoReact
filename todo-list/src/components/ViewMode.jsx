@@ -1,6 +1,7 @@
 import React from 'react';
 import {ThemeContext} from "../hooks/darkmode";
 import {FaSun, FaMoon} from "react-icons/all";
+import {motion} from "framer-motion";
 import AddTask from "./AddTask";
 
 const Toggle = () => {
