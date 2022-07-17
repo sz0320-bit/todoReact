@@ -4,6 +4,8 @@ import Window from "./window";
 import AddTask from "./AddTask";
 import Toggle from "./ViewMode";
 import {AnimatePresence,motion, LayoutGroup} from "framer-motion";
+import Logout from "./logout";
+import firebase from "../firebase";
 let tasks = JSON.parse(localStorage.getItem('items')) || [];
 
 
@@ -60,10 +62,12 @@ const [show, setShow] = useState(false);
         setButtonShow(!bool);
     }
 
-
+    const signOut = () => {
+        firebase.auth().signOut();
+    }
 
     return (
-        <>
+        <div className={"m-7"}>
             <AnimatePresence>
             {show && <Window onSubmit={addTask} showState={showState} initialTitle={''} initialDesc={''} title={"Please Enter Task"} showButtons={setButtonShow} />}
             </AnimatePresence>
@@ -75,10 +79,10 @@ const [show, setShow] = useState(false);
                         ))}</AnimatePresence>
                 </motion.div>
             </motion.div>
-
+            <Logout onClick={signOut}/>
             {buttonShow && <AddTask onclick={showState}/>}
             {buttonShow && <Toggle/>}
-        </>
+        </div>
     )
 }catch (e) {
     console.log(e);

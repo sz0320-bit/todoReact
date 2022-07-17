@@ -43,10 +43,10 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
                 <motion.div
 
             key={task.id}
-            initial={{opacity: 0,scale:0,transition:{duration: 10,ease: "easeInOut"}}}
+            initial={{opacity: 0,scale:0,transition:{duration: 0,ease: "easeInOut"}}}
             animate={{opacity: 1,scale:1,transition:{duration: 0,ease: "easeInOut"}}}
             whileHover={!showMore && description !=='' ? {scale:1.05,transition:{duration:0}}  : {scale:1}}
-            whileTap={description !=='' ? {scale:0.95} : {scale:1}}
+            whileTap={description !=='' ? {scale:0.95} : {scale:1,transition:{duration:0}}}
             exit={{opacity: 0,scale:0,transition:{duration: 0.15,ease: "easeOut"}}}
             className={`h-fit p-5 flex gap-3 flex-col justify-center select-none   primary rounded-xl shadow-xl 
             ${description !=='' ? 'border-b-8 border-b-blue-600 md:hover:scale-105 lg:hover:scale-105':''}`}
