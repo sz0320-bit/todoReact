@@ -6,17 +6,23 @@ import Toggle from "./ViewMode";
 import {AnimatePresence,motion, LayoutGroup} from "framer-motion";
 import Logout from "./logout";
 import firebase from "../firebase";
-let tasks = JSON.parse(localStorage.getItem('items')) || [];
+import {doc,setDoc,getDoc} from "firebase/firestore"
+import {useCollectionData} from "react-firebase-hooks/firestore";
+
 
 
 
 
 const Tasks = () => {
+
 try {
+
+
+    const todosRef = firebase.firestore().collection(`users/${firebase.auth().currentUser.uid}/todos`);
+    const newRef = firebase.firestore().collection(`users/${firebase.auth().currentUser.uid}/todos`);
+    console.log(useCollectionData(newRef));
+    let tasks = JSON.parse(localStorage.getItem('items')) || [];
     const [task, setTasks] = useState(tasks);
-
-
-
     const addTask = (text, desc) => {
         let ret = {"text":text,"desc":desc,"id":randomKey()};
         setTasks(task.concat(ret));
@@ -29,6 +35,9 @@ try {
             localStorage.setItem("items", JSON.stringify(tasks));
             console.log(task)
             console.log(tasks);
+            todosRef.doc('main').set({
+                task
+            });
         }
     }, [task]);
 
@@ -85,6 +94,7 @@ const [show, setShow] = useState(false);
         </div>
     )
 }catch (e) {
+    localStorage.setItem("items", JSON.stringify(''));
     console.log(e);
 }
  }
