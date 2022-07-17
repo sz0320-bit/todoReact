@@ -6,8 +6,9 @@ import Toggle from "./ViewMode";
 import {AnimatePresence,motion, LayoutGroup} from "framer-motion";
 import Logout from "./logout";
 import firebase from "../firebase";
-import {doc,setDoc,getDoc} from "firebase/firestore"
+import {doc,setDoc,getDoc,query, onSnapshot} from "firebase/firestore"
 import {useCollectionData} from "react-firebase-hooks/firestore";
+
 
 
 
@@ -16,30 +17,62 @@ import {useCollectionData} from "react-firebase-hooks/firestore";
 const Tasks = () => {
 
 try {
-
-
     const todosRef = firebase.firestore().collection(`users/${firebase.auth().currentUser.uid}/todos`);
     const newRef = firebase.firestore().collection(`users/${firebase.auth().currentUser.uid}/todos`);
-    console.log(useCollectionData(newRef));
-    let tasks = JSON.parse(localStorage.getItem('items')) || [];
-    const [task, setTasks] = useState(tasks);
+
+
+    const [task, setTasks] = useState([]);
+
+
+    const getData = async () => {let nret = [];
+        const ss = (newRef.get());
+        const datas = await ss
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    nret = (doc.data().task);
+                    setTasks(doc.data().task);
+                    console.log(doc.data().task);
+                });
+            }).catch(err => {
+                console.log(err);
+            })
+
+    }
+
+    useEffect(() => {
+       getData();
+    },[]);
+
+
+
+
+
+
+
+
+
+
     const addTask = (text, desc) => {
         let ret = {"text":text,"desc":desc,"id":randomKey()};
         setTasks(task.concat(ret));
     }
 
+    const initialRender = useRef(0);
 
     useEffect(() => {
-        {
-            tasks = task;
-            localStorage.setItem("items", JSON.stringify(tasks));
-            console.log(task)
-            console.log(tasks);
+        if (initialRender.current < 3) {
+           initialRender.current += 1;
+            console.log('first run')
+        }else {
+            console.log("update");
+            let init = task;
             todosRef.doc('main').set({
-                task
+                "task": init
             });
         }
     }, [task]);
+
+
 
     const deleteTask = (key) => {
         setTasks(task.filter((task) => task.id !== key));
@@ -48,7 +81,7 @@ try {
     const editTask = (id, text, desc) => {
         //function that setsstate as a new array with the edited task that matches the id and replaces the text with the new text
         console.log(id, text, desc);
-        let newTask = [...tasks]
+        let newTask = [...task]
         for(let i = 0; i < newTask.length; i++) {
             if(newTask[i].id === id) {
                 newTask[i].text = text;
@@ -94,7 +127,6 @@ const [show, setShow] = useState(false);
         </div>
     )
 }catch (e) {
-    localStorage.setItem("items", JSON.stringify(''));
     console.log(e);
 }
  }
