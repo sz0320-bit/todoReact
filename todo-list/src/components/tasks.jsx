@@ -41,6 +41,7 @@ try {
 
     useEffect(() => {
        getData();
+
     },[]);
 
 
@@ -53,14 +54,20 @@ try {
 
 
     const addTask = (text, desc) => {
-        let ret = {"text":text,"desc":desc,"id":randomKey()};
+        let ret = {
+            "text":text,
+            "desc":desc,
+            "id":randomKey(),
+            "dateCreated":new Date().toLocaleString(),
+            "lastUpdated":new Date().toLocaleString(),
+        };
         setTasks(task.concat(ret));
     }
 
     const initialRender = useRef(0);
 
     useEffect(() => {
-        if (initialRender.current < 3) {
+        if (initialRender.current < 2) {
            initialRender.current += 1;
             console.log('first run')
         }else {
@@ -86,6 +93,7 @@ try {
             if(newTask[i].id === id) {
                 newTask[i].text = text;
                 newTask[i].desc = desc;
+                newTask[i].lastUpdated = new Date().toLocaleString();
             }
         }
         setTasks(newTask);
