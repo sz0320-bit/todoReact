@@ -2,6 +2,7 @@ import '../main.css'
 import {Tasks} from './tasks'
 import {MainHead} from "./head";
 import {Enter} from "./Enter";
+
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
@@ -26,9 +27,11 @@ const BodyBox = () => {
     return (
         <>
 
-            <MainHead/>
+            {user ? <MainHead show={true} /> : <MainHead show={false} />}
 
             {user ? <Tasks/> : <Enter onClick={signWithGoogle}/>}
+
+
 
 
 

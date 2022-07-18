@@ -24,18 +24,19 @@ try {
     const [task, setTasks] = useState([]);
 
 
-    const getData = async () => {let nret = [];
-        const ss = (newRef.get());
-        const datas = await ss
-            .then(snapshot => {
+    const getData = async () => {
+
+        let nret = [];
+
+
+            newRef.onSnapshot(async (snapshot) => {
                 snapshot.forEach(doc => {
                     nret = (doc.data().task);
                     setTasks(doc.data().task);
                     console.log(doc.data().task);
                 });
-            }).catch(err => {
-                console.log(err);
-            })
+            });
+
 
     }
 
@@ -43,10 +44,6 @@ try {
        getData();
 
     },[]);
-
-
-
-
 
 
 
@@ -112,9 +109,6 @@ const [show, setShow] = useState(false);
         setButtonShow(!bool);
     }
 
-    const signOut = () => {
-        firebase.auth().signOut();
-    }
 
     return (
         <div className={"m-7"}>
@@ -129,7 +123,6 @@ const [show, setShow] = useState(false);
                         ))}</AnimatePresence>
                 </motion.div>
             </motion.div>
-            <Logout onClick={signOut}/>
             {buttonShow && <AddTask onclick={showState}/>}
             {buttonShow && <Toggle/>}
         </div>

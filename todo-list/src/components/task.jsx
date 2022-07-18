@@ -48,7 +48,7 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
             whileHover={!showMore && description !=='' ? {scale:1.05,transition:{duration:0}}  : {scale:1}}
             whileTap={description !=='' ? {scale:0.95} : {scale:1,transition:{duration:0}}}
             exit={{opacity: 0,scale:0,transition:{duration: 0.15,ease: "easeOut"}}}
-            className={`h-fit p-5 flex gap-3 flex-col justify-center select-none   primary rounded-xl shadow-xl 
+            className={`h-fit p-5  flex gap-3 flex-col justify-center select-none   primary rounded-xl shadow-xl 
             ${description !=='' ? 'border-b-8 border-b-blue-600 md:hover:scale-105 lg:hover:scale-105':''}`}
             onClick={() => description !==''? setShowMore(!showMore): console.log('no description to show!')} >
 
@@ -57,18 +57,18 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
 
 
             <motion.div  id="line" className={"select-none"}>
-                <input  type={'text'} className=" w-[100%]  text-center  select-none  font-extrabold  textColor flex justify-center  h-fit  primary overflow-y-auto break-words font-mono text-xl pointer-events-none"
+                <input  type={'text'} className=" w-[100%]  text-center  select-none  font-extrabold  textColor flex justify-center  h-fit  primary overflow-y-auto break-words font-mono lg:text-xl text-m pointer-events-none"
                         value={text}  onChange={(e) => setText(e.target.value)}/>
             </motion.div>
                 <AnimatePresence  exitBeforeEnter={true}>
                 {showMore && <motion.div
-                    className={" w-[100%] textColor bg-[#616161] select-none  flex p-2  rounded-xl h-fit duration-200 description overflow-y-auto break-words font-mono text-s pointer-events-none"}>
+                    className={" w-[100%] textColor bg-[#616161] select-none text-sm lg:text-base  flex p-2  rounded-xl  h-fit duration-200 description overflow-y-auto break-words font-mono text-s pointer-events-none"}>
                     {description}
                  </motion.div>}
                 </AnimatePresence>
             <motion.div className="flex justify-center gap-5" >
-                <input type="button" value="edit" className=" px-7 font-mono py-0.5  bg-blue-600 w-32 text-white border-blue-800 h-fit px-2 rounded-xl shadow-xl" onClick={editPress}/>
-                <input type="button" value="delete" className=" px-7 font-mono py-0.5 bg-blue-600 w-32 text-white  h-fit px-2 rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
+                <input type="button" value="edit" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5  bg-blue-600 w-32 text-white border-blue-800 h-[1.5em] lg:h-fit  rounded-xl shadow-xl" onClick={editPress}/>
+                <input type="button" value="delete" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5 bg-blue-600 w-32 text-white h-[1.5em]  lg:h-fit  rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
             </motion.div>
 
         </motion.div>
