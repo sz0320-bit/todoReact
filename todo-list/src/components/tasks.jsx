@@ -59,12 +59,13 @@ try {
             "lastUpdated":new Date().toLocaleString(),
         };
         setTasks(task.concat(ret));
+        setTasks(task.concat(ret));
     }
 
     const initialRender = useRef(0);
 
     useEffect(() => {
-        if (initialRender.current < 2) {
+        if (initialRender.current < 3) {
            initialRender.current += 1;
             console.log('first run')
         }else {
@@ -80,6 +81,7 @@ try {
 
     const deleteTask = (key) => {
         setTasks(task.filter((task) => task.id !== key));
+        setTasks(task.filter((task) => task.id !== key));
     }
 
     const editTask = (id, text, desc) => {
@@ -94,7 +96,7 @@ try {
             }
         }
         setTasks(newTask);
-
+        setTasks(newTask);
     }
     //function that returns a completely random hash key
     const randomKey = () => {
