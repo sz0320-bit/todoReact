@@ -25,7 +25,7 @@ const BodyBox = () => {
 
     const client = new ApolloClient({
        cache: new InMemoryCache(),
-         uri: process.env.REACT_APP_API_URL
+         uri: "https://updatedgraphql.herokuapp.com/graphql",
     });
 
 
