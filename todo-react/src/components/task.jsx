@@ -20,7 +20,7 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
 
 
     const editTask = (text,desc) => {
-        onEdit(task.id, text, desc);
+        onEdit(task._id, text, desc);
         setText(text);
         setDescription(desc);
         desc==='' ? setShowMore(false) : setShowMore(true);
@@ -39,7 +39,7 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
 
         </AnimatePresence>
             {
-
+                <LayoutGroup>
                 <motion.div
 
             key={task.id}
@@ -48,6 +48,7 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
             whileHover={!showMore && description !=='' ? {scale:1.05,transition:{duration:0}}  : {scale:1}}
             whileTap={description !=='' ? {scale:0.95} : {scale:1,transition:{duration:0}}}
             exit={{opacity: 0,scale:0,transition:{duration: 0.15,ease: "easeOut"}}}
+            transition={{bounce:0}}
             className={`h-fit p-5  flex gap-3 flex-col justify-center select-none   primary rounded-xl shadow-xl 
             ${description !=='' ? 'border-b-8 border-b-blue-600 md:hover:scale-105 lg:hover:scale-105':''}`}
             onClick={() => description !==''? setShowMore(!showMore): console.log('no description to show!')} >
@@ -57,7 +58,7 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
 
 
             <motion.div  id="line" className={"select-none"}>
-                <input  type={'text'} className=" w-[100%]  text-center  select-none  font-extrabold  textColor flex justify-center  h-fit  primary overflow-y-auto break-words font-mono lg:text-xl text-m pointer-events-none"
+                <input  type={'text'} className=" w-[100%]  text-center  select-none textColor flex justify-center  h-fit  primary overflow-y-auto break-words font-mono lg:text-xl text-m pointer-events-none"
                         value={text}  onChange={(e) => setText(e.target.value)}/>
             </motion.div>
                 <AnimatePresence  exitBeforeEnter={true}>
@@ -68,11 +69,11 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
                 </AnimatePresence>
             <motion.div className="flex justify-center gap-5" >
                 <input type="button" value="edit" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5  bg-blue-600 w-32 text-white border-blue-800 h-[1.5em] lg:h-fit  rounded-xl shadow-xl" onClick={editPress}/>
-                <input type="button" value="delete" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5 bg-blue-600 w-32 text-white h-[1.5em]  lg:h-fit  rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
+                <input type="button" value="delete" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5 bg-blue-600 w-32 text-white h-[1.5em]  lg:h-fit  rounded-xl shadow-xl" onClick={() => onDelete(task._id)}/>
             </motion.div>
 
         </motion.div>
-
+                </LayoutGroup>
             }
 
         </>

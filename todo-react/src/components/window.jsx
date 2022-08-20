@@ -46,7 +46,7 @@ import {AnimatePresence, motion} from "framer-motion";
                     transition={{duration: 0.2, ease: "easeInOut"}}
                     className={"h-[100%] left-0 top-0 justify-center  items-center w-screen fixed flex-col flex glass "}>
                     <form onSubmit={newTask}
-                          className={'flex font-mono primary flex-col center w-[90%] h-fit gap-5 py-7 shadow-2xl  justify-evenly items-center  rounded-xl p-2 '}>
+                          className={'flex font-mono primary flex-col center w-[90%] h-fit gap-5 py-7 shadow-2xl  justify-evenly items-center  rounded-3xl p-2 '}>
                         <h2 className={"textColor underline underline-offset-2 text-xl font-bold"}>{title}:</h2>
                         <h4 className={"textColor mb-[-1em] text-[0.8rem]"}>Title:</h4>
                         <input type={"text"} required id="mainentry" maxLength={24} value={text}

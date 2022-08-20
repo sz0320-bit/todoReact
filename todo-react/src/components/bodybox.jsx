@@ -2,11 +2,11 @@ import '../main.css'
 import {Tasks} from './tasks'
 import {MainHead} from "./head";
 import {Enter} from "./Enter";
-
-import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
 import firebase from "../firebase";
+import {ApolloClient, InMemoryCache, ApolloProvider, useQuery} from "@apollo/client";
+
 
 
 const BodyBox = () => {
@@ -23,8 +23,14 @@ const BodyBox = () => {
 
     const [user,load] = useAuthState(firebase.auth());
 
+    const client = new ApolloClient({
+       cache: new InMemoryCache(),
+         uri: process.env.REACT_APP_API_URL
+    });
+
 
     return (
+        <ApolloProvider client={client}>
         <>
 
             {user ? <MainHead show={true} /> : <MainHead show={false} />}
@@ -32,12 +38,8 @@ const BodyBox = () => {
             {user ? <Tasks/> : <Enter onClick={signWithGoogle}/>}
 
 
-
-
-
-
-
         </>
+        </ApolloProvider>
     )
 }
 export {BodyBox};

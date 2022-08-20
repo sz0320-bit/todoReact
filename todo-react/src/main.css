@@ -25,6 +25,9 @@
 *{
 
 }
+cursor{
+    @apply bg-blue-600;
+}
 body{
     @apply secondary !important;
 
