@@ -15,50 +15,50 @@ import {useQuery, useMutation,gql} from "@apollo/client";
 
 
 const getAllTasks = gql`
-    query($accountId: String!) {
-        getTodosFromAccount(account_id: $accountId) {
-            _id
-            createdAt
+    query GetTodosFromAccount($uuid: String!) {
+        getTodosFromAccount(uuid: $uuid) {
+            id
+            createdat
             desc
-            account_id
-            updatedAt
+            uuid
+            updatedat
             text
         }
     }
     `
 
 const NEW_TASK = gql`
-    mutation Mutation($desc: String!, $accountId: String!, $text: String!) {
-        createTodo(desc: $desc, account_id: $accountId, text: $text) {
-            _id
-            createdAt
+    mutation Mutation($desc: String!, $uuid: String!, $text: String!) {
+        createTodo(desc: $desc, uuid: $uuid, text: $text) {
+            id
+            createdat
             desc
-            account_id
-            updatedAt
+            uuid
+            updatedat
             text
         }
     }
 `
 const DELETE_TASK = gql`
-    mutation Mutation($id: String!, $accountId: String!) {
-        deleteTodo(_id: $id, account_id: $accountId) {
-            _id
-            createdAt
+    mutation Mutation($uuid: String!, $deleteTodoId: Int!) {
+        deleteTodo(uuid: $uuid, id: $deleteTodoId) {
+            id
+            createdat
             desc
-            account_id
-            updatedAt
+            uuid
+            updatedat
             text
         }
     }
     `
 const UPDATE_TASK = gql`
-    mutation UpdateTodo($id: String!, $text: String!, $desc: String!, $accountId: String!) {
-        updateTodo(_id: $id, text: $text, desc: $desc, account_id: $accountId) {
-            _id
+    mutation UpdateTodo($updateTodoId: Int!, $text: String!, $desc: String!, $uuid: String!) {
+        updateTodo(id: $updateTodoId, text: $text, desc: $desc, uuid: $uuid) {
+            id
+            createdat
+            uuid
             desc
-            createdAt
-            account_id
-            updatedAt
+            updatedat
             text
         }
     }
@@ -77,22 +77,26 @@ try {
 
         const {data} = useQuery(getAllTasks,{
             variables:{
-                accountId:firebase.auth().currentUser.uid
+                uuid:firebase.auth().currentUser.uid
             }
         });
         const [addNewTask] = useMutation(NEW_TASK, {
             onCompleted: (data) => {
-                setTasks([...task, data.createTodo]);
+                setTasks([...task, data.createTodo[0]]);
             }
         });
 
         const [deleteTaskDB] = useMutation(DELETE_TASK, {
            onCompleted: (data) => {
-                setTasks(task.filter(task => task._id !== data.deleteTodo._id));
+                setTasks(task.filter(task => task.id !== data.deleteTodo[0].id));
            }
         });
 
         const [updateTaskDB] = useMutation(UPDATE_TASK);
+        useEffect(() => {
+            console.log(data);
+            {data && setTasks(data.getTodosFromAccount)}
+        },[]);
 
         useEffect(() => {
             console.log(data);
@@ -108,7 +112,7 @@ try {
 
 
     const addTask = (text, desc) => {
-        addNewTask({variables: {desc: desc, accountId: user.uid, text: text}});
+        addNewTask({variables: {desc: desc, uuid: user.uid, text: text}});
     }
 
 
@@ -119,20 +123,12 @@ try {
 
     const deleteTask = (key) => {
         console.log(key);
-        deleteTaskDB({variables: {id: key,accountId: user.uid}});
+        deleteTaskDB({variables: {deleteTodoId: key, uuid: user.uid}});
     }
 
     const editTask = (id, text, desc) => {
-        //function that setsstate as a new array with the edited task that matches the id and replaces the text with the new text
-        let newTask = [...task]
-        for(let i = 0; i < newTask.length; i++) {
-            if(newTask[i].id === id) {
-                newTask[i].text = text;
-                newTask[i].desc = desc;
-            }
-        }
-        setTasks(newTask);
-        updateTaskDB({variables: {id: id, text: text, desc: desc, accountId: user.uid}});
+
+        updateTaskDB({variables: {updateTodoId: id, text: text, desc: desc, uuid: user.uid}});
     }
     //function that returns a completely random hash key
     const randomKey = () => {
@@ -157,7 +153,7 @@ const [show, setShow] = useState(false);
                 <motion.div transition={{duration:2}} id={'entrypoint'} className={'flex flex-col lg:grid lg:grid-cols-3  gap-5 gap-y-10 md:grid lg:gap-8 md:grid-cols-2'}>
                     <AnimatePresence>{
                         task.map((task) => (
-                            <Task  key={task._id}  task={task} onEdit={editTask} onDelete={deleteTask} editShow={setButtonShow}/>
+                            <Task  key={task.id}  task={task} onEdit={editTask} onDelete={deleteTask} editShow={setButtonShow}/>
                         ))}</AnimatePresence>
                 </motion.div>
             </motion.div>

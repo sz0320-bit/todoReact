@@ -20,7 +20,7 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
 
 
     const editTask = (text,desc) => {
-        onEdit(task._id, text, desc);
+        onEdit(task.id, text, desc);
         setText(text);
         setDescription(desc);
         desc==='' ? setShowMore(false) : setShowMore(true);
@@ -69,7 +69,7 @@ const Task = ({task,onDelete,onEdit,editShow}) => {
                 </AnimatePresence>
             <motion.div className="flex justify-center gap-5" >
                 <input type="button" value="edit" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5  bg-blue-600 w-32 text-white border-blue-800 h-[1.5em] lg:h-fit  rounded-xl shadow-xl" onClick={editPress}/>
-                <input type="button" value="delete" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5 bg-blue-600 w-32 text-white h-[1.5em]  lg:h-fit  rounded-xl shadow-xl" onClick={() => onDelete(task._id)}/>
+                <input type="button" value="delete" className=" px-7 font-mono lg:text-base md:text-base text-sm lg:py-0.5 bg-blue-600 w-32 text-white h-[1.5em]  lg:h-fit  rounded-xl shadow-xl" onClick={() => onDelete(task.id)}/>
             </motion.div>
 
         </motion.div>
